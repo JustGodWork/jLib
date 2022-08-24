@@ -12,8 +12,6 @@
 -------
 --]]
 
-jLib.player = {}
-
 ---@param data table
 ---@return LocalPlayer
 function jLib.LocalPlayer(data)
@@ -279,9 +277,3 @@ function jLib.LocalPlayer(data)
 
     return self
 end
-
-jLib.Events.onNet("jLib:createPlayer", function(xPlayer)
-    jLib.player = jLib.LocalPlayer(xPlayer)
-end);
-
-jLib.Events.toServer("jLib:requestPlayers");

@@ -34,7 +34,6 @@ if IS_CLIENT then
     --INIT PLAYER DATA
     jLib.Events.onNet("jLib:createPlayer", function(xPlayer)
         jLib.player = jLib.LocalPlayer(xPlayer)
-        jLib.Events.trigger(string.format("%s:Zone:reload", GetCurrentResourceName()))
     end);
     jLib.Events.toServer("jLib:requestPlayers");
 

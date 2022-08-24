@@ -51,6 +51,7 @@ function Zone:start(callback)
     if callback then self.callback = callback end
     self.running = true
     CreateThread(function()
+        while not jLib.player do Wait(0) end
         while self.running do
             self.callback()
             Wait(self.timer)
@@ -184,7 +185,7 @@ end
 
 local function reloadZones()
     CreateThread(function()
-        while not jLib.player do Wait(20) end
+        while not jLib.player do Wait(0) end
         for k, _ in pairs(jLib.Zones) do
             local zone = jLib.Zones[k]
             if jLib.player.getJob().name == zone.data.job and zone.data.jobGrade == "not"
@@ -215,6 +216,7 @@ local function reloadZones()
 end
 
 jLib.Events.on(string.format("%s:Zone:reload", GetCurrentResourceName()), function()
-    print("Reloading")
     reloadZones()
 end)
+
+jLib.Events.trigger(string.format("%s:Zone:reload", GetCurrentResourceName()))
