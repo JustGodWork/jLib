@@ -12,9 +12,6 @@
 -------
 --]]
 
----@class Events
-jLib.Events = {}
-
 ---@param eventName string
 function jLib.Events.trigger(eventName, ...)
     return TriggerEvent(eventName, ...)
@@ -40,13 +37,7 @@ end
 ---@param cb fun(xPlayer: xPlayer | boolean, ...)
 function jLib.Events.on(eventName, cb)
     return AddEventHandler(eventName, function(...)
-        if not IsDuplicityVersion() then
-            cb(...)
-        else
-            local src = source
-            local xPlayer = src ~= 0 and ESX.GetPlayerFromId(src) or false
-            cb(xPlayer, ...)
-        end
+        cb(...)
     end)
 end
 

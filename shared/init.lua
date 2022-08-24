@@ -14,8 +14,14 @@
 
 jLib = {}
 
+AddEventHandler("jLib:getLib", function(callback)
+	callback(jLib)
+end)
+
 exports('getLib', function()
 	return jLib
 end)
 
 jLib.Utils = {}
+jLib.Math = {}
+jLib.Events = {}

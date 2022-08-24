@@ -339,7 +339,7 @@ function RageUI.GoBack()
         local Audio = RageUI.Settings.Audio
         RageUI.PlaySound(Audio[Audio.Use].Back.audioName, Audio[Audio.Use].Back.audioRef)
         if CurrentMenu.Parent ~= nil then
-            if CurrentMenu.Parent() then
+            if CurrentMenu.Parent then
                 RageUI.NextMenu = CurrentMenu.Parent
             else
                 RageUI.NextMenu = nil

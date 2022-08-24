@@ -3,7 +3,7 @@
 --Author: JustGod
 --Made with ❤
 -------
---Last Modified: Wednesday August 24th 2022 12:08:37 am
+--Last Modified: Wednesday August 24th 2022 8:29:09 pm
 -------
 --Copyright (c) 2022 JustGodWork, All Rights Reserved.
 --This file is part of JustGodWork project.
@@ -12,3 +12,11 @@
 -------
 --]]
 
+jLib.Events.Enum = {
+    Client = {
+        createPlayer = "jLib:createPlayer",
+    },
+    Server = {
+        requestPlayer = "jLib:requestPlayers",
+    }
+}

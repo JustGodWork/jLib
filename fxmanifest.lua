@@ -20,6 +20,7 @@ github "https://github.com/JustGodWork"
 description "Library for Scripting created by JustGod"
 
 shared_scripts {
+    "lang.lua",
     "Config.lua",
     "dependencies/**/**",
     "shared/**/**"
@@ -34,6 +35,7 @@ client_scripts {
 }
 
 files({
+    "lang.lua",
     "import.lua",
     "files/server/**/**",
     "files/client/**/**"

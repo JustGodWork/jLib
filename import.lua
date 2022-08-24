@@ -12,11 +12,11 @@
 -------
 --]]
 
-local IS_CLIENT = not IsDuplicityVersion();
-local IS_SERVER = IsDuplicityVersion();
-
 ESX = exports['es_extended']:getSharedObject()
 jLib = exports["jLib"]:getLib()
+
+jLib.IS_CLIENT = not IsDuplicityVersion();
+jLib.IS_SERVER = IsDuplicityVersion();
 
 ---@param path string
 function jLib.loadModule(path)
@@ -26,8 +26,8 @@ function jLib.loadModule(path)
         end
         return
     end
-    local module = LoadResourceFile("jLib", string.format("files/%s", path))
-    local moduleLoaded, err = load(module, string.format("files/%s", path))
+    local moduleToLoad = LoadResourceFile("jLib", string.format("files/%s", path))
+    local moduleLoaded, err = load(moduleToLoad, string.format("files/%s", path))
 
     if err then 
         return error(string.format("Error loading module ^4%s^1 in ^4%s^7", path, GetCurrentResourceName()))
@@ -36,21 +36,17 @@ function jLib.loadModule(path)
     end
 end
 
-if IS_CLIENT then
+if jLib.IS_CLIENT then
     --INIT PLAYER DATA
-    jLib.Events.onNet("jLib:createPlayer", function(xPlayer)
+    jLib.Events.onNet(jLib.Events.Enum.Client.createPlayer, function(xPlayer)
         jLib.player = jLib.LocalPlayer(xPlayer)
     end);
-    jLib.Events.toServer("jLib:requestPlayers");
+    jLib.Events.toServer(jLib.Events.Enum.Server.requestPlayer);
 
     --LOADING SOME MODULE TO REFRESH PLAYER DATA
     jLib.loadModule("client/PlayerEvents.lua");
-    
+
     --LOADING OTHER MODULES
     jLib.loadModule("client/Zones.lua");
     jLib.loadModule(jLib.RageModule);
-end
-
-if IS_SERVER then
-    jLib.Admins = jLib.getAdmins()
 end

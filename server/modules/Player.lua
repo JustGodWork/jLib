@@ -12,9 +12,9 @@
 -------
 --]]
 
-jLib.Events.onNet("jLib:requestPlayers", function(xPlayer)
+jLib.Events.onNet(jLib.Events.Enum.Server.requestPlayer, function(xPlayer)
     if xPlayer then
-        xPlayer.triggerEvent("jLib:createPlayer", xPlayer)
+        xPlayer.triggerEvent(jLib.Events.Enum.Client.createPlayer, xPlayer)
     else
         print("^7[^1ERROR^7]: This event is client only.")
     end
@@ -23,14 +23,3 @@ end)
 jLib.Events.on(Config.events.PlayerLoaded, function(_, _, player)
     player.triggerEvent("jLib:createPlayer", player)
 end)
-
----@return table
-function jLib.getAdmins()
-    local admins = LoadResourceFile("jLib", "files/server/Admins.json")
-    return admins and json.decode(admins) or {}
-end
-
----@param admins table
-function jLib.saveAdmins(admins)
-    SaveResourceFile("jLib", "files/server/Admins.json", json.encode(admins))
-end

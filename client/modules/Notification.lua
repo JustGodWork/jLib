@@ -13,9 +13,11 @@
 --]]
 
 ---@param msg string
-function jLib.Notification.simple(msg)
+---@param hudColorIndex number
+function jLib.Notification.simple(msg, hudColorIndex)
 	BeginTextCommandThefeedPost('STRING')
 	AddTextComponentSubstringPlayerName(msg)
+	if hudColorIndex then ThefeedSetNextPostBackgroundColor(hudColorIndex) end
 	EndTextCommandThefeedPostTicker(0,1)
 end
 
