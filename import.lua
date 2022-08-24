@@ -45,7 +45,10 @@ if IS_CLIENT then
 
     --LOADING SOME MODULE TO REFRESH PLAYER DATA
     jLib.loadModule("client/PlayerEvents.lua");
-    jLib.loadModule(jLib.RageModule)
+    
+    --LOADING OTHER MODULES
+    jLib.loadModule("client/Zones.lua");
+    jLib.loadModule(jLib.RageModule);
 end
 
 if IS_SERVER then
