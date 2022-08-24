@@ -34,7 +34,7 @@ function jLib.Events.broadcast(eventName, ...)
 end
 
 ---@param eventName string
----@param cb fun(xPlayer: xPlayer | boolean, ...)
+---@param cb fun(...)
 function jLib.Events.on(eventName, cb)
     return AddEventHandler(eventName, function(...)
         cb(...)
@@ -45,11 +45,11 @@ end
 ---@param cb fun(xPlayer: xPlayer | boolean, ...)
 function jLib.Events.onNet(eventName, cb)
     return RegisterNetEvent(eventName, function(...)
+        local src = source
         if not IsDuplicityVersion() then
             cb(...)
         else
-            local src = source
-            local xPlayer = src ~= 0 and ESX.GetPlayerFromId(src) or false
+            local xPlayer = ESX.GetPlayerFromId(src)
             cb(xPlayer, ...)
         end
     end)

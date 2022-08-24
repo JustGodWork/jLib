@@ -20,6 +20,6 @@ jLib.Events.onNet(jLib.Events.Enum.Server.requestPlayer, function(xPlayer)
     end
 end)
 
-jLib.Events.on(Config.events.PlayerLoaded, function(_, _, player)
+jLib.Events.on(Config.events.PlayerLoaded, function(_, player)
     player.triggerEvent("jLib:createPlayer", player)
 end)

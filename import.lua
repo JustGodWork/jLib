@@ -41,7 +41,12 @@ if jLib.IS_CLIENT then
     jLib.Events.onNet(jLib.Events.Enum.Client.createPlayer, function(xPlayer)
         jLib.player = jLib.LocalPlayer(xPlayer)
     end);
-    jLib.Events.toServer(jLib.Events.Enum.Server.requestPlayer);
+
+    AddEventHandler("onResourceStart", function(resource)
+        if resource == GetCurrentResourceName() then
+            jLib.Events.toServer(jLib.Events.Enum.Server.requestPlayer);
+        end
+    end)
 
     --LOADING SOME MODULE TO REFRESH PLAYER DATA
     jLib.loadModule("client/PlayerEvents.lua");
