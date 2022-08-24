@@ -20,6 +20,12 @@ jLib = exports["jLib"]:getLib()
 
 ---@param path string
 function jLib.loadModule(path)
+    if type(path) == "table" then
+        for i = 1, #path do
+            jLib.loadModule(path[i])
+        end
+        return
+    end
     local module = LoadResourceFile("jLib", string.format("files/%s", path))
     local moduleLoaded, err = load(module, string.format("files/%s", path))
 
@@ -39,6 +45,7 @@ if IS_CLIENT then
 
     --LOADING SOME MODULE TO REFRESH PLAYER DATA
     jLib.loadModule("client/PlayerEvents.lua");
+    jLib.loadModule(jLib.RageModule)
 end
 
 if IS_SERVER then

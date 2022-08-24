@@ -22,7 +22,7 @@ Config.MarkerRGB = {
     a2 = 150
 }
 
-Config.job2 = false -- ENABLE JOB2 USAGE
+Config.job2 = true -- ENABLE JOB2 USAGE
 
 Config.events = {
     PlayerLoaded = "esx:playerLoaded",

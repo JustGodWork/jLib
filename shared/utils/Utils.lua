@@ -3,7 +3,7 @@
 --Author: JustGod
 --Made with ❤
 -------
---Last Modified: Wednesday August 24th 2022 12:08:37 am
+--Last Modified: Wednesday August 24th 2022 1:28:29 pm
 -------
 --Copyright (c) 2022 JustGodWork, All Rights Reserved.
 --This file is part of JustGodWork project.
@@ -12,8 +12,6 @@
 -------
 --]]
 
-jLib = {}
-
-exports('getLib', function()
-	return jLib
-end)
+function jLib.Utils.getConfig()
+	return Config
+end

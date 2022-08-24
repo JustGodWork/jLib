@@ -96,8 +96,8 @@ end
 ---@param radius number
 ---@param rgb table<r, g, b, a1, a2>
 function Zone:marker(zAxis, marker, radius, rgb)
-    return DrawMarker(marker or 6, self.coords.x, self.coords.y, self.coords.z + (zAxis or - 0.98), 0.0, 0.0, 0.0, -90, 0.0, 0.0, radius or 0.75, radius or 0.75, radius or 0.75, rgb.r or jLib.getConfig().MarkerRGB.r, rgb.g or jLib.getConfig().MarkerRGB.g, rgb.b or jLib.getConfig().MarkerRGB.b, rgb.a1 or jLib.getConfig().MarkerRGB.a1, false, false, nil, false, false, false, false),
-    DrawMarker(1, self.coords.x, self.coords.y, self.coords.z + (zAxis or - 0.98), 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, radius or 0.75, radius or 0.75, 0.3, rgb.r or jLib.getConfig().MarkerRGB.r, rgb.g or jLib.getConfig().MarkerRGB.g, rgb.b or jLib.getConfig().MarkerRGB.b, rgb.a2 or jLib.getConfig().MarkerRGB.a2, false, false, nil, false, false, false, false)
+    return DrawMarker(marker or 6, self.coords.x, self.coords.y, self.coords.z + (zAxis or - 0.98), 0.0, 0.0, 0.0, -90, 0.0, 0.0, radius or 0.75, radius or 0.75, radius or 0.75, rgb.r or jLib.Utils.getConfig().MarkerRGB.r, rgb.g or jLib.Utils.getConfig().MarkerRGB.g, rgb.b or jLib.Utils.getConfig().MarkerRGB.b, rgb.a1 or jLib.Utils.getConfig().MarkerRGB.a1, false, false, nil, false, false, false, false),
+    DrawMarker(1, self.coords.x, self.coords.y, self.coords.z + (zAxis or - 0.98), 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, radius or 0.75, radius or 0.75, 0.3, rgb.r or jLib.Utils.getConfig().MarkerRGB.r, rgb.g or jLib.Utils.getConfig().MarkerRGB.g, rgb.b or jLib.Utils.getConfig().MarkerRGB.b, rgb.a2 or jLib.Utils.getConfig().MarkerRGB.a2, false, false, nil, false, false, false, false)
 end
 
 ---@param text string
@@ -173,7 +173,7 @@ end
 ---@param key string
 ---@param callback function
 function Zone:keyPressed(key, callback)
-    if IsControlJustReleased(0, jLib.Keys[key]) then
+    if IsControlJustReleased(0, jLib.Utils.Keys[key]) then
         if callback then callback() else return end
     end
 end
@@ -189,11 +189,11 @@ local function reloadZones()
         for k, _ in pairs(jLib.Zones) do
             local zone = jLib.Zones[k]
             if jLib.player.getJob().name == zone.data.job and zone.data.jobGrade == "not"
-                    or (jLib.getConfig().job2) and jLib.player.getJob2().name == zone.data.job2 and zone.data.job2Grade == "not"
+                    or (jLib.Utils.getConfig().job2) and jLib.player.getJob2().name == zone.data.job2 and zone.data.job2Grade == "not"
                     or jLib.player.getJob().name == zone.data.job and zone.data.jobGrade == jLib.player.getJob().grade_name
-                    or (jLib.getConfig().job2) and jLib.player.getJob2().name == zone.data.job2 and zone.data.job2Grade == jLib.player.getJob2().grade_name
+                    or (jLib.Utils.getConfig().job2) and jLib.player.getJob2().name == zone.data.job2 and zone.data.job2Grade == jLib.player.getJob2().grade_name
                     or zone.data.job == "not" and zone.data.jobGrade == jLib.player.getJob().grade_name
-                    or (jLib.getConfig().job2) and zone.data.job2 == "not" and zone.data.job2Grade == jLib.player.getJob2().grade_name
+                    or (jLib.Utils.getConfig().job2) and zone.data.job2 == "not" and zone.data.job2Grade == jLib.player.getJob2().grade_name
             then
                 if not zone:isRunning() and zone.callback then
                     zone:resume()

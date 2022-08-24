@@ -13,7 +13,7 @@
 --]]
 
 ---@param msg string
-function jLib.ShowNotification(msg)
+function jLib.Notification.simple(msg)
 	BeginTextCommandThefeedPost('STRING')
 	AddTextComponentSubstringPlayerName(msg)
 	EndTextCommandThefeedPostTicker(0,1)
@@ -27,7 +27,7 @@ end
 ---@param flash boolean
 ---@param saveToBrief boolean
 ---@param hudColorIndex number
-function jLib.ShowAdvancedNotification(sender, subject, msg, textureDict, iconType, flash, saveToBrief, hudColorIndex)
+function jLib.Notification.advanced(sender, subject, msg, textureDict, iconType, flash, saveToBrief, hudColorIndex)
 	if saveToBrief == nil then saveToBrief = true end
 	AddTextEntry('AdvancedNotification', msg)
 	BeginTextCommandThefeedPost('AdvancedNotification')
@@ -40,7 +40,7 @@ end
 ---@param thisFrame boolean
 ---@param beep boolean 
 ---@param duration number
-function jLib.ShowHelpNotification(msg, thisFrame, beep, duration)
+function jLib.Notification.helpNotification(msg, thisFrame, beep, duration)
 	AddTextEntry('HelpNotification', msg)
 
 	if thisFrame then

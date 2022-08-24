@@ -12,17 +12,17 @@
 -------
 --]]
 
-jLib.Events.onNet(jLib.getConfig().events.setJob, function(job)
+jLib.Events.onNet(jLib.Utils.getConfig().events.setJob, function(job)
     jLib.player.setJob(job)
     jLib.Events.trigger(string.format("%s:Zone:reload", GetCurrentResourceName()))
 end)
 
-jLib.Events.onNet(jLib.getConfig().events.setJob2, function(job2)
+jLib.Events.onNet(jLib.Utils.getConfig().events.setJob2, function(job2)
     jLib.player.setJob2(job2)
     jLib.Events.trigger(string.format("%s:Zone:reload", GetCurrentResourceName()))
 end)
 
-jLib.Events.onNet(jLib.getConfig().events.setAccountMoney, function(account)
+jLib.Events.onNet(jLib.Utils.getConfig().events.setAccountMoney, function(account)
     for k, v in ipairs(jLib.player.getAccounts()) do
         if v.name == account.name then
             jLib.player.setAccount(k, v)
@@ -31,10 +31,10 @@ jLib.Events.onNet(jLib.getConfig().events.setAccountMoney, function(account)
     end
 end)
 
-jLib.Events.onNet(jLib.getConfig().events.addInventoryItem, function(item, count)
+jLib.Events.onNet(jLib.Utils.getConfig().events.addInventoryItem, function(item, count)
     jLib.player.addInventoryItem(item, count)
 end)
 
-jLib.Events.onNet(jLib.getConfig().events.removeInventoryItem, function(itemName, count)
+jLib.Events.onNet(jLib.Utils.getConfig().events.removeInventoryItem, function(itemName, count)
     jLib.player.removeInventoryItem(itemName, count)
 end)
