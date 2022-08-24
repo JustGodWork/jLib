@@ -12,8 +12,6 @@
 --- @see RageUI
 ---
 
-print("^4RageUI - https://github.com/iTexZoz/RageUI - OpenSource Advanced UI Api^0")
-
 function math.round(num, numDecimalPlaces)
     return tonumber(string.format("%." .. (numDecimalPlaces or 0) .. "f", num))
 end

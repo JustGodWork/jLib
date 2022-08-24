@@ -12,4 +12,10 @@
 -------
 --]]
 
+jLib = {}
+
+exports('getLib', function()
+	return jLib
+end)
+
 jLib.Utils = {}

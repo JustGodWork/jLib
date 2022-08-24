@@ -12,8 +12,3 @@
 -------
 --]]
 
-jLib = {}
-
-exports('getLib', function()
-	return jLib
-end)
