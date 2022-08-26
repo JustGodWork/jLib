@@ -5,6 +5,7 @@
 ```lua
 --In Your fxmanifest (At the top)
 shared_scripts {
+	"@jLib/lang.lua",
 	"@jLib/import.lua"
 }
 ```
