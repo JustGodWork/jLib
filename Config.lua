@@ -25,6 +25,7 @@ Config.MarkerRGB = {
 Config.job2 = true -- ENABLE JOB2 USAGE
 
 Config.events = {
+    esx = "esx:getSharedObject",
     PlayerLoaded = "esx:playerLoaded",
     setJob = "esx:setJob",
     setJob2 = "esx:setJob2",

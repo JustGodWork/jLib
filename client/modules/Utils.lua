@@ -53,3 +53,61 @@ function jLib.Utils.DrawText3D(coords, text, size, font)
 	EndTextCommandDisplayText(0.0, 0.0)
 	ClearDrawOrigin()
 end
+
+---Client function
+---@param textEntry string
+---@param maxLength number
+---@param text string
+---@param text2 string
+---@param text3 string
+---@param text4 string
+function jLib.Utils.keyboardInput(textEntry, maxLenght, text, text2, text3, text4)
+    AddTextEntry('FMMC_KEY_TIP1', textEntry)
+    DisplayOnscreenKeyboard(
+		1, 
+		"FMMC_KEY_TIP1", 
+		"", 
+		text, 
+		text2, 
+		text3, 
+		text4, 
+		maxLenght or 10
+	)
+
+    while (UpdateOnscreenKeyboard() ~= 1 and UpdateOnscreenKeyboard() ~= 2) do
+        DisableAllControlActions(0);
+        Wait(0);
+    end
+
+    if (UpdateOnscreenKeyboard() ~= 2) then
+        local result = GetOnscreenKeyboardResult();
+        Wait(500);
+        return result;
+    else
+        Wait(500);
+        return nil;
+    end
+end
+
+---@param input string
+---@param inputType "string" | "number" | "boolean"
+function jLib.Utils.inputIsValid(input, inputType)
+	if (input and input ~= "") then
+		if (inputType == "string") then
+			return true;
+		elseif (inputType == "number") then
+			if (tonumber(input)) then
+				return true;
+			end
+		elseif (inputType == "boolean") then
+			if (
+				input == "1" 
+				or input == "0"
+				or input == "true"
+				or input == "false"
+			) then
+				return true;
+			end
+		end
+	end
+end

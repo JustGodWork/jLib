@@ -12,16 +12,16 @@
 -------
 --]]
 
-jLib = {}
+jLib = {};
 
 AddEventHandler("jLib:getLib", function(callback)
-	callback(jLib)
+	callback(jLib, ESX);
 end)
 
 exports('getLib', function()
-	return jLib
+	return jLib, ESX;
 end)
 
-jLib.Utils = {}
-jLib.Math = {}
-jLib.Events = {}
+jLib.Utils = {};
+jLib.Math = {};
+jLib.Events = {};

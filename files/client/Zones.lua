@@ -218,7 +218,7 @@ local function reloadZones()
 end
 
 jLib.Events.on(string.format("%s:Zone:reload", GetCurrentResourceName()), function()
-    reloadZones()
+    reloadZones();
 end)
 
-jLib.Events.trigger(string.format("%s:Zone:reload", GetCurrentResourceName()))
+jLib.Events.trigger(string.format("%s:Zone:reload", GetCurrentResourceName()));

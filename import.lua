@@ -12,8 +12,7 @@
 -------
 --]]
 
-ESX = exports['es_extended']:getSharedObject()
-jLib = exports["jLib"]:getLib()
+jLib, ESX = exports["jLib"]:getLib();
 
 jLib.IS_CLIENT = not IsDuplicityVersion();
 jLib.IS_SERVER = IsDuplicityVersion();
@@ -32,7 +31,7 @@ function jLib.loadModule(path)
     if err then 
         return error(string.format("Error loading module ^4%s^1 in ^4%s^7", path, GetCurrentResourceName()))
     else
-        return moduleLoaded()
+        return moduleLoaded();
     end
 end
 

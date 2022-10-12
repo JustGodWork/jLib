@@ -260,7 +260,7 @@ RageUI.Settings = {
     Items = {
         Title = {
             Background = { Width = 431, Height = 107 },
-            Text = { X = 215, Y = 20, Scale = 1.15 },
+            Text = { X = 215, Y = 15, Scale = 1.15 },
         },
         Subtitle = {
             Background = { Width = 431, Height = 37 },

@@ -70,3 +70,8 @@ function jLib.Utils.isValidAndOfType(var, varType)
 	end
 	return false;
 end
+
+---@return table
+function jLib.getESX()
+	return ESX;
+end

@@ -27,7 +27,7 @@ shared_scripts {
 }
 
 server_scripts {
-    "@oxmysql/lib/MySQL.lua",
+    "@mysql-async/lib/MySQL.lua",
     "server/**/**"
 }
 
@@ -44,6 +44,5 @@ files({
 })
 
 dependencies {
-    "oxmysql",
     "es_extended"
 }

@@ -12,4 +12,4 @@
 -------
 --]]
 
-ESX = exports['es_extended']:getSharedObject()
+ESX = exports['es_extended']:getSharedObject();
