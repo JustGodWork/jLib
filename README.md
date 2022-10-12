@@ -1,5 +1,15 @@
 # jLib: Library to make coding with ESX more easy
 
+# Features
+
+ - `UUID's`
+ - `RageUI integrated 0MS closed`
+ - `Utils (KeyboardInput, DrawText3D etc...)`
+ - `Client Side player (Auto updated, replacing ESX.PlayerData)`
+ - `Events system (Replacing RegisterNetEvent etc...)`
+ - `Many others things...`
+
+
 # Usage
 -Import the lib in your resource:
 ```lua
