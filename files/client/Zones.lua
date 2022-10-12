@@ -14,7 +14,8 @@
 
 jLib.Zones = {}
 
-jLib.Class.extends("Zone", "BaseObject", function(class)
+---@class Zone: BaseObject
+Zone = Class.extends(BaseObject, function(class)
     
     ---@class Zone: BaseObject
     local self = class;

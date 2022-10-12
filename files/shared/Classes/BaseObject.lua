@@ -25,8 +25,21 @@ setmetatable(BaseObject, {
 });
 
 ---@private
+function BaseObject:GetCreators()
+    local creators = [[
+        -----------------------------------------------------
+        |    Original code has been made by MegaThorx       |
+        |    and rewritten by JustGod to make a code like   |
+        |    JavaScript                                     |
+        -----------------------------------------------------
+    ]]
+    print(creators);
+    return creators;
+end
+
+---@private
 function BaseObject:new(...)
-    return Class.new(self, ...)
+    return Class.instance(self, ...);
 end
 
 function BaseObject:super(...)

@@ -15,15 +15,11 @@
 
 --Crédits: https://github.com/nanos-world/egui (MegaThorx)
 
-jLib.Class = {};
-
-local classes = {
-	["BaseObject"] = BaseObject
-};
+Class = {};
 
 ---@param class BaseObject
 ---@return BaseObject | nil
-function jLib.Class.super(class)
+function Class.super(class)
 	local metatable = getmetatable(class);
 	local metasuper = metatable.__super;
 	if (metasuper) then
@@ -34,62 +30,56 @@ end
 
 ---@param class BaseObject
 local function build(class)
-	if (classes[class]) then
-		local metatable = getmetatable(classes[class]);
+	if (class) then
+		local metatable = getmetatable(class);
 		return setmetatable( {}, {
-			__index = classes[class];
-			__super = jLib.Class.super(classes[class]);
-			__newindex = classes[class].__newindex;
+			__index = class;
+			__super = Class.super(class);
+			__newindex = class.__newindex;
 			__call = metatable.__call;
-			__len = classes[class].__len;
-			__unm = classes[class].__unm;
-			__add = classes[class].__add;
-			__sub = classes[class].__sub;
-			__mul = classes[class].__mul;
-			__div = classes[class].__div;
-			__pow = classes[class].__pow;
-			__concat = classes[class].__concat;
+			__len = class.__len;
+			__unm = class.__unm;
+			__add = class.__add;
+			__sub = class.__sub;
+			__mul = class.__mul;
+			__div = class.__div;
+			__pow = class.__pow;
+			__concat = class.__concat;
 		});
 	end
 end
 
----@param newClass BaseObject
 ---@param from BaseObject
 ---@param callback fun(class: BaseObject): BaseObject
 ---@return BaseObject
-function jLib.Class.extends(newClass, from, callback)
-	assert(newClass, "Attempt to create a nil class value");
-	assert(from, "Attempt to inherit a nil class value");
-	if (not classes[newClass]) then
-		local meta = {};
-		classes[newClass] = callback(meta);
-		local metatable = getmetatable(classes[from]);
-		setmetatable(classes[newClass], {
-			__index = classes[from];
-			__super = classes[from];
-			__newindex = classes[from].__newindex;
-			__call = metatable.__call;
-			__len = classes[from].__len;
-			__unm = classes[from].__unm;
-			__add = classes[from].__add;
-			__sub = classes[from].__sub;
-			__mul = classes[from].__mul;
-			__div = classes[from].__div;
-			__pow = classes[from].__pow;
-			__concat = classes[from].__concat;
-		});
-	end
+function Class.extends(from, callback)
+	local extend = from or BaseObject;
+	local metatable = getmetatable(extend);
+	return setmetatable(callback({}), {
+		__index = extend;
+		__super = extend;
+		__newindex = extend.__newindex;
+		__call = metatable.__call;
+		__len = extend.__len;
+		__unm = extend.__unm;
+		__add = extend.__add;
+		__sub = extend.__sub;
+		__mul = extend.__mul;
+		__div = extend.__div;
+		__pow = extend.__pow;
+		__concat = extend.__concat;
+	});
 end
 
 ---@param class BaseObject
 ---@param ... any
 ---@return BaseObject
-function jLib.Class.instance(class, ...)
-	if (class and classes[class]) then
+function Class.instance(class, ...)
+	if (class and class) then
 		local instance = build(class);
 
-		if (rawget(classes[class], "Constructor")) then
-			rawget(classes[class], "Constructor")(instance, ...);
+		if (rawget(class, "Constructor")) then
+			rawget(class, "Constructor")(instance, ...);
 		end
 
 		return instance;
@@ -97,8 +87,8 @@ function jLib.Class.instance(class, ...)
 end
 
 ---@param class BaseObject
-function jLib.Class.Delete(class, ...)
-	if (not self) then error("Called delete without object"); end
+function Class.Delete(class, ...)
+	if (not class) then error("Called delete without object"); end
 	if (class.Destroy) then
 		class:Destroy(...);
 	end
