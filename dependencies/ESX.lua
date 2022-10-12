@@ -12,4 +12,6 @@
 -------
 --]]
 
-ESX = exports['es_extended']:getSharedObject();
+TriggerEvent(Config.events.esx, function(obj)
+    ESX = obj;
+end);
