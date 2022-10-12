@@ -53,7 +53,6 @@ local function StyleCheckBox(Selected, Checked, Box, BoxSelect, OffSet)
     end
 end
 
-
 function Items:Checkbox(Label, Description, Checked, Style, Actions)
     ---@type table
     local CurrentMenu = RageUI.CurrentMenu;
@@ -64,7 +63,7 @@ function Items:Checkbox(Label, Description, Checked, Style, Actions)
             local Option = RageUI.Options + 1
             if CurrentMenu.Pagination.Minimum <= Option and CurrentMenu.Pagination.Maximum >= Option then
                 ---@type number
-                local Selected = CurrentMenu.Index == Option
+                local Active = CurrentMenu.Index == Option
                 local LeftBadgeOffset = ((Style.LeftBadge == RageUI.BadgeStyle.None or Style.LeftBadge == nil) and 0 or 27)
                 local RightBadgeOffset = ((Style.RightBadge == RageUI.BadgeStyle.None or Style.RightBadge == nil) and 0 or 32)
                 local BoxOffset = 0
@@ -74,15 +73,15 @@ function Items:Checkbox(Label, Description, Checked, Style, Actions)
 
                 ---@type boolean
                 if CurrentMenu.EnableMouse == true and (CurrentMenu.CursorStyle == 0) or (CurrentMenu.CursorStyle == 1) then
-                    Hovered = RageUI.ItemsMouseBounds(CurrentMenu, Selected, Option, SettingsButton);
+                    Hovered = RageUI.ItemsMouseBounds(CurrentMenu, Active, Option, SettingsButton);
                 end
-                if Selected then
+                if Active then
                     RenderSprite(SettingsButton.SelectedSprite.Dictionary, SettingsButton.SelectedSprite.Texture, CurrentMenu.X, CurrentMenu.Y + SettingsButton.SelectedSprite.Y + CurrentMenu.SubtitleHeight + RageUI.ItemOffset, SettingsButton.SelectedSprite.Width + CurrentMenu.WidthOffset, SettingsButton.SelectedSprite.Height)
                 end
 
                 if type(Style) == "table" then
                     if Style.Enabled == true or Style.Enabled == nil then
-                        if Selected then
+                        if Active then
                             RenderText(Label, CurrentMenu.X + SettingsButton.Text.X + LeftBadgeOffset, CurrentMenu.Y + SettingsButton.Text.Y + CurrentMenu.SubtitleHeight + RageUI.ItemOffset, 0, SettingsButton.Text.Scale, 0, 0, 0, 255)
                         else
                             RenderText(Label, CurrentMenu.X + SettingsButton.Text.X + LeftBadgeOffset, CurrentMenu.Y + SettingsButton.Text.Y + CurrentMenu.SubtitleHeight + RageUI.ItemOffset, 0, SettingsButton.Text.Scale, 245, 245, 245, 255)
@@ -90,14 +89,14 @@ function Items:Checkbox(Label, Description, Checked, Style, Actions)
                         if type(Style) == 'table' then
                             if Style.LeftBadge ~= nil then
                                 if Style.LeftBadge ~= RageUI.BadgeStyle.None then
-                                    local BadgeData = Style.LeftBadge(Selected)
-                                    RenderSprite(BadgeData.BadgeDictionary or "commonmenu", BadgeData.BadgeTexture or "", CurrentMenu.X, CurrentMenu.Y + SettingsButton.LeftBadge.Y + CurrentMenu.SubtitleHeight + RageUI.ItemOffset, SettingsButton.LeftBadge.Width, SettingsButton.LeftBadge.Height, 0, BadgeData.BadgeColour and BadgeData.BadgeColour.R or 255, BadgeData.BadgeColour and BadgeData.BadgeColour.G or 255, BadgeData.BadgeColour and BadgeData.BadgeColour.B or 255, BadgeData.BadgeColour and BadgeData.BadgeColour.A or 255)
+                                    local BadgeData = Style.LeftBadge(Active)
+                                    RenderSprite(BadgeData.BadgeDictionary or "seaShield", BadgeData.BadgeTexture or "", CurrentMenu.X, CurrentMenu.Y + SettingsButton.LeftBadge.Y + CurrentMenu.SubtitleHeight + RageUI.ItemOffset, SettingsButton.LeftBadge.Width, SettingsButton.LeftBadge.Height, 0, BadgeData.BadgeColour and BadgeData.BadgeColour.R or 255, BadgeData.BadgeColour and BadgeData.BadgeColour.G or 255, BadgeData.BadgeColour and BadgeData.BadgeColour.B or 255, BadgeData.BadgeColour and BadgeData.BadgeColour.A or 255)
                                 end
                             end
                             if Style.RightBadge ~= nil then
                                 if Style.RightBadge ~= RageUI.BadgeStyle.None then
-                                    local BadgeData = Style.RightBadge(Selected)
-                                    RenderSprite(BadgeData.BadgeDictionary or "commonmenu", BadgeData.BadgeTexture or "", CurrentMenu.X + SettingsButton.RightBadge.X + CurrentMenu.WidthOffset, CurrentMenu.Y + SettingsButton.RightBadge.Y + CurrentMenu.SubtitleHeight + RageUI.ItemOffset, SettingsButton.RightBadge.Width, SettingsButton.RightBadge.Height, 0, BadgeData.BadgeColour and BadgeData.BadgeColour.R or 255, BadgeData.BadgeColour and BadgeData.BadgeColour.G or 255, BadgeData.BadgeColour and BadgeData.BadgeColour.B or 255, BadgeData.BadgeColour and BadgeData.BadgeColour.A or 255)
+                                    local BadgeData = Style.RightBadge(Active)
+                                    RenderSprite(BadgeData.BadgeDictionary or "seaShield", BadgeData.BadgeTexture or "", CurrentMenu.X + SettingsButton.RightBadge.X + CurrentMenu.WidthOffset, CurrentMenu.Y + SettingsButton.RightBadge.Y + CurrentMenu.SubtitleHeight + RageUI.ItemOffset, SettingsButton.RightBadge.Width, SettingsButton.RightBadge.Height, 0, BadgeData.BadgeColour and BadgeData.BadgeColour.R or 255, BadgeData.BadgeColour and BadgeData.BadgeColour.G or 255, BadgeData.BadgeColour and BadgeData.BadgeColour.B or 255, BadgeData.BadgeColour and BadgeData.BadgeColour.A or 255)
                                 end
                             end
                         end
@@ -107,21 +106,21 @@ function Items:Checkbox(Label, Description, Checked, Style, Actions)
                         ---@type number
                         local LeftBadgeOffset = ((LeftBadge == RageUI.BadgeStyle.None or LeftBadge == nil) and 0 or 27)
 
-                        if Selected then
+                        if Active then
                             RenderText(Label, CurrentMenu.X + SettingsButton.Text.X + LeftBadgeOffset, CurrentMenu.Y + SettingsButton.Text.Y + CurrentMenu.SubtitleHeight + RageUI.ItemOffset, 0, SettingsButton.Text.Scale, 0, 0, 0, 255)
                         else
                             RenderText(Label, CurrentMenu.X + SettingsButton.Text.X + LeftBadgeOffset, CurrentMenu.Y + SettingsButton.Text.Y + CurrentMenu.SubtitleHeight + RageUI.ItemOffset, 0, SettingsButton.Text.Scale, 163, 159, 148, 255)
                         end
 
                         if LeftBadge ~= RageUI.BadgeStyle.None and LeftBadge ~= nil then
-                            local BadgeData = LeftBadge(Selected)
+                            local BadgeData = LeftBadge(Active)
 
-                            RenderSprite(BadgeData.BadgeDictionary or "commonmenu", BadgeData.BadgeTexture or "", CurrentMenu.X, CurrentMenu.Y + SettingsButton.LeftBadge.Y + CurrentMenu.SubtitleHeight + RageUI.ItemOffset, SettingsButton.LeftBadge.Width, SettingsButton.LeftBadge.Height, 0, BadgeData.BadgeColour.R or 255, BadgeData.BadgeColour.G or 255, BadgeData.BadgeColour.B or 255, BadgeData.BadgeColour.A or 255)
+                            RenderSprite(BadgeData.BadgeDictionary or "seaShield", BadgeData.BadgeTexture or "", CurrentMenu.X, CurrentMenu.Y + SettingsButton.LeftBadge.Y + CurrentMenu.SubtitleHeight + RageUI.ItemOffset, SettingsButton.LeftBadge.Width, SettingsButton.LeftBadge.Height, 0, BadgeData.BadgeColour.R or 255, BadgeData.BadgeColour.G or 255, BadgeData.BadgeColour.B or 255, BadgeData.BadgeColour.A or 255)
                         end
                     end
 
                     if Style.Enabled == true or Style.Enabled == nil then
-                        if Selected then
+                        if Active then
                             if Style.RightLabel ~= nil and Style.RightLabel ~= "" then
 
                                 RenderText(Style.RightLabel, CurrentMenu.X + SettingsButton.RightText.X - RightBadgeOffset + CurrentMenu.WidthOffset, CurrentMenu.Y + SettingsButton.RightText.Y + CurrentMenu.SubtitleHeight + RageUI.ItemOffset, 0, SettingsButton.RightText.Scale, 0, 0, 0, 255, 2)
@@ -138,17 +137,17 @@ function Items:Checkbox(Label, Description, Checked, Style, Actions)
                     BoxOffset = RightBadgeOffset + BoxOffset
                     if Style.Style ~= nil then
                         if Style.Style == RageUI.CheckboxStyle.Tick then
-                            StyleCheckBox(Selected, Checked, 2, 4, BoxOffset)
+                            StyleCheckBox(Active, Checked, 2, 4, BoxOffset)
                         elseif Style.Style == RageUI.CheckboxStyle.Cross then
-                            StyleCheckBox(Selected, Checked, 5, 6, BoxOffset)
+                            StyleCheckBox(Active, Checked, 5, 6, BoxOffset)
                         else
-                            StyleCheckBox(Selected, Checked, 2, 4, BoxOffset)
+                            StyleCheckBox(Active, Checked, 2, 4, BoxOffset)
                         end
                     else
-                        StyleCheckBox(Selected, Checked, 2, 4, BoxOffset)
+                        StyleCheckBox(Active, Checked, 2, 4, BoxOffset)
                     end
 
-                    if Selected and (CurrentMenu.Controls.Select.Active or (Hovered and CurrentMenu.Controls.Click.Active)) and (Style.Enabled == true or Style.Enabled == nil) then
+                    if Active and (CurrentMenu.Controls.Select.Active or (Hovered and CurrentMenu.Controls.Click.Active)) and (Style.Enabled == true or Style.Enabled == nil) then
                         local Audio = RageUI.Settings.Audio
                         RageUI.PlaySound(Audio[Audio.Use].Select.audioName, Audio[Audio.Use].Select.audioRef)
                         Checked = not Checked
@@ -168,10 +167,13 @@ function Items:Checkbox(Label, Description, Checked, Style, Actions)
 
                 RageUI.ItemOffset = RageUI.ItemOffset + SettingsButton.Rectangle.Height
 
-                RageUI.ItemsDescription(CurrentMenu, Description, Selected)
+                RageUI.ItemsDescription(CurrentMenu, Description, Active)
 
-                if (Actions.onSelected ~= nil) and (Selected) then
-                    Actions.onSelected(Checked);
+                local Selected = (CurrentMenu.Controls.Select.Active or (Hovered and CurrentMenu.Controls.Click.Active)) and Active
+                if (Selected) then
+                    if (Actions.onSelected ~= nil) then
+                        Actions.onSelected(Checked);
+                    end
                 end
 
             end

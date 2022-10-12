@@ -38,6 +38,7 @@ client_scripts {
 files({
     "lang.lua",
     "import.lua",
+    "files/shared/**/**",
     "files/server/**/**",
     "files/client/**/**"
 })

@@ -36,6 +36,12 @@ function jLib.loadModule(path)
     end
 end
 
+---Loading files in both sides
+
+---Classes
+jLib.loadModule("shared/Classes/BaseObject.lua");
+jLib.loadModule("shared/Classes/Utils.lua");
+
 if jLib.IS_CLIENT then
     --INIT PLAYER DATA
     jLib.Events.onNet(jLib.Events.Enum.Client.createPlayer, function(xPlayer)

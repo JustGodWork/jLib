@@ -15,6 +15,7 @@
 ---@Crédits go to https://gist.github.com/jrus
 local random = math.random
 
+---Shared function
 ---@param template string ex: '4xxx-yxxx'
 function jLib.Utils.uuid(template)
     local template = template or 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'

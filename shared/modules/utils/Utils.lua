@@ -12,6 +12,61 @@
 -------
 --]]
 
+---Shared function
+---@return Config
 function jLib.Utils.getConfig()
 	return Config
+end
+
+---Shared function
+---@param var any
+---@return boolean
+function jLib.Utils.isString(var)
+	return type(var) == "string";
+end
+
+---Shared function
+---@param var any
+---@return boolean
+function jLib.Utils.isTable(var)
+	return type(var) == "table";
+end
+
+---Shared function
+---@param var any
+---@return boolean
+function jLib.Utils.isNumber(var)
+	return type(var) == "number";
+end
+
+---Shared function
+---@param var any
+---@return boolean
+function jLib.Utils.isBoolean(var)
+	return type(var) == "boolean";
+end
+
+---Shared function
+---@param var any
+---@return boolean
+function jLib.Utils.isNil(var)
+	return var == nil or type(var) == nil;
+end
+
+---Shared function
+---@param var any
+---@return boolean
+function jLib.Utils.isValid(var)
+	return var ~= nil and type(var) ~= nil;
+end
+
+---Shared function
+---@param var any
+---@param varType type
+---@return boolean
+function jLib.Utils.isValidAndOfType(var, varType)
+	if (jLib.Utils.isValid(var) and type(var) == varType) then
+		return true;
+	end
+	return false;
 end
