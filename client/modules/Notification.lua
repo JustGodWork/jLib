@@ -53,3 +53,29 @@ function jLib.Notification.helpNotification(msg, thisFrame, beep, duration)
 		EndTextCommandDisplayHelp(0, false, beep, duration or -1)
 	end
 end
+
+jLib.Events.onNet(jLib.Events.Enum.Client.showNotification, function(message, hudColorIndex)
+	jLib.Notification.simple(message, hudColorIndex)
+end)
+
+jLib.Events.onNet(jLib.Events.Enum.Client.showAdvancedNotification, function(
+	sender, 
+	subject, 
+	message, 
+	textureDict, 
+	iconType, 
+	flash, 
+	saveToBrief, 
+	hudColorIndex
+)
+	jLib.Notification.advanced(
+		sender, 
+		subject, 
+		message, 
+		textureDict, 
+		iconType, 
+		flash, 
+		saveToBrief, 
+		hudColorIndex
+	);
+end)

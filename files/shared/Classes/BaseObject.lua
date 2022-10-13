@@ -44,12 +44,25 @@ end
 
 function BaseObject:super(...)
     local metatable = getmetatable(self);
-    local metasuper = metatable.__super;
-    if (metasuper) then
-        if (rawget(metasuper, "Constructor")) then
-            rawget(metasuper, "Constructor")(self, ...)
+    local super = metatable.__super;
+    if (super) then
+        if (rawget(super, "Constructor")) then
+            rawget(super, "Constructor")(self, ...)
         end
     end
+end
+
+---@param methodName string
+---@param ... any
+---@return function | nil
+function BaseObject:CallParentMethod(methodName, ...)
+    local metatable = getmetatable(self);
+    local metasuper = metatable.__super;
+    local method = rawget(metasuper, methodName);
+    if (method) then
+        return method(self, ...);
+    end
+    return nil
 end
 
 function BaseObject:Delete(...)

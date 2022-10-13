@@ -18,18 +18,18 @@ jLib.IS_CLIENT = not IsDuplicityVersion();
 jLib.IS_SERVER = IsDuplicityVersion();
 
 ---@param path string
-function jLib.loadModule(path)
-    if type(path) == "table" then
+function jLib.loadModule(path, folder)
+    if (type(path) == "table") then
         for i = 1, #path do
-            jLib.loadModule(path[i])
+            jLib.loadModule(path[i], folder);
         end
         return
     end
-    local moduleToLoad = LoadResourceFile("jLib", string.format("files/%s", path))
-    local moduleLoaded, err = load(moduleToLoad, string.format("files/%s", path))
+    local moduleToLoad = LoadResourceFile("jLib", string.format(folder or "files/%s", path));
+    local moduleLoaded, err = load(moduleToLoad, string.format(folder or "files/%s", path));
 
     if err then 
-        return error(string.format("Error loading module ^4%s^1 in ^4%s^7", path, GetCurrentResourceName()))
+        return error(string.format("Error loading module ^4%s^1 in ^4%s^7", path, GetCurrentResourceName()));
     else
         return moduleLoaded();
     end
@@ -40,6 +40,12 @@ end
 ---Classes
 jLib.loadModule("shared/Classes/BaseObject.lua");
 jLib.loadModule("shared/Classes/Utils.lua");
+
+if jLib.IS_SERVER then
+    jLib.loadModule("server/Player/Events.lua");
+    jLib.loadModule("server/Player/entities/Player.lua");
+    jLib.loadModule("server/Player/PlayerManager.lua");
+end
 
 if jLib.IS_CLIENT then
     --INIT PLAYER DATA

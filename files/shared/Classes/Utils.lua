@@ -53,29 +53,36 @@ end
 ---@param callback fun(class: BaseObject): BaseObject
 ---@return BaseObject
 function Class.extends(from, callback)
-	local extend = from or BaseObject;
+	assert(from, "Attempt to extends from a nil class value");
+	local extend = from;
 	local metatable = getmetatable(extend);
 	return setmetatable(callback({}), {
 		__index = extend;
 		__super = extend;
-		__newindex = extend.__newindex;
+		__newindex = metatable.__newindex;
 		__call = metatable.__call;
-		__len = extend.__len;
-		__unm = extend.__unm;
-		__add = extend.__add;
-		__sub = extend.__sub;
-		__mul = extend.__mul;
-		__div = extend.__div;
-		__pow = extend.__pow;
-		__concat = extend.__concat;
+		__len = metatable.__len;
+		__unm = metatable.__unm;
+		__add = metatable.__add;
+		__sub = metatable.__sub;
+		__mul = metatable.__mul;
+		__div = metatable.__div;
+		__pow = metatable.__pow;
+		__concat = metatable.__concat;
 	});
+end
+
+---@param callback fun(class: BaseObject): BaseObject
+---@return BaseObject
+function Class.new(callback)
+	return Class.extends(BaseObject, callback);
 end
 
 ---@param class BaseObject
 ---@param ... any
 ---@return BaseObject
 function Class.instance(class, ...)
-	if (class and class) then
+	if (class) then
 		local instance = build(class);
 
 		if (rawget(class, "Constructor")) then

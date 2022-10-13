@@ -14,8 +14,8 @@
 
 jLib.Zones = {}
 
----@class Zone: BaseObject
-Zone = Class.extends(BaseObject, function(class)
+---@type Zone
+Zone = Class.new(function(class)
     
     ---@class Zone: BaseObject
     local self = class;
@@ -23,9 +23,9 @@ Zone = Class.extends(BaseObject, function(class)
     ---@param data table @data.job string @data.jobGrade string @data.job2 string @data.job2Grade string @data.timer number @data.coords vector3
     ---@return Zone
     function self:Constructor(id, data)
-        if data == nil then data = {} end
-        if not id or type(id) ~= "string" then return error("^4jLib^7: ^3Zone^7 | ^1 Id must be a string^7") end
-        self.id = id
+        if data == nil then data = {}; end
+        if not id or type(id) ~= "string" then return error("^4jLib^7: ^3Zone^7 | ^1 Id must be a string^7"); end
+        self.id = id;
         self.data = {
             job = data.job or "not",
             jobGrade = data.jobGrade or "not",
@@ -34,11 +34,11 @@ Zone = Class.extends(BaseObject, function(class)
             coords = data.coords or {}
         }
 
-        self.radius = {}
-        self.timer = (data and data.timer) or 0
-        self.running = false
+        self.radius = {};
+        self.timer = (data and data.timer) or 0;
+        self.running = false;
 
-        jLib.Zones[self.id] = self
+        jLib.Zones[self.id] = self;
     end
 
     ---@param callback function
@@ -51,12 +51,12 @@ Zone = Class.extends(BaseObject, function(class)
         if callback then self.callback = callback end
         self.running = true
         CreateThread(function()
-            while not jLib.player do Wait(0) end
+            while (not jLib.player) do Wait(0); end
             while self.running do
-                self.callback()
-                Wait(self.timer)
+                self.callback();
+                Wait(self.timer);
             end
-        end)
+        end);
     end
 
     ---@param timer number
@@ -207,11 +207,11 @@ local function reloadZones()
                 and zone.data.job2Grade == "not" 
             then
                 if not zone:isRunning() and zone.callback then
-                    zone:resume()
+                    zone:resume();
                 end
             else
                 if zone:isRunning() then
-                    zone:stop()
+                    zone:stop();
                 end
             end
         end

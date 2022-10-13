@@ -15,6 +15,8 @@
 jLib.Events.Enum = {
     Client = {
         createPlayer = "jLib:createPlayer",
+        showNotification = "jLib:ShowNotification",
+        showAdvancedNotification = "jLib:ShowAdvancedNotification",
     },
     Server = {
         requestPlayer = "jLib:requestPlayers",
