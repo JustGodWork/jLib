@@ -168,16 +168,22 @@ function jLib.LocalPlayer(data)
         return self.accounts
     end
 
-    ---@param key string
-    ---@param value table
-    function self.setAccount(key, value)
-        self.accounts[key] = value
+    ---@param account table
+    function self.setAccount(account)
+
+        for k, v in ipairs(self.getAccounts()) do
+            if v.name == account.name then
+                self.accounts[k] = account
+                break;
+            end
+        end
+
     end
 
     ---@return number
     function self.getMoney()
         for _, v in pairs(self.accounts) do
-            if v.name == "cash" then
+            if v.name == jLib.Utils.getConfig().accounts.money then
                 return v.money
             end
         end
@@ -186,7 +192,7 @@ function jLib.LocalPlayer(data)
     ---@return number
     function self.getBank()
         for _, v in pairs(self.accounts) do
-            if v.name == "bank" then
+            if v.name == jLib.Utils.getConfig().accounts.bank then
                 return v.money
             end
         end
@@ -195,7 +201,7 @@ function jLib.LocalPlayer(data)
     ---@return number
     function self.getBlackMoney()
         for _, v in pairs(self.accounts) do
-            if v.name == "black_money" then
+            if v.name == jLib.Utils.getConfig().accounts.black_money then
                 return v.money
             end
         end

@@ -44,7 +44,7 @@ jLib.loadModule("shared/Classes/Utils.lua");
 if jLib.IS_CLIENT then
     --INIT PLAYER DATA
     jLib.Events.onNet(jLib.Events.Enum.Client.createPlayer, function(xPlayer)
-        jLib.player = jLib.LocalPlayer(xPlayer)
+        jLib.player = jLib.LocalPlayer(xPlayer);
     end);
 
     AddEventHandler("onResourceStart", function(resource)

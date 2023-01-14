@@ -23,12 +23,9 @@ jLib.Events.onNet(jLib.Utils.getConfig().events.setJob2, function(job2)
 end)
 
 jLib.Events.onNet(jLib.Utils.getConfig().events.setAccountMoney, function(account)
-    for k, v in ipairs(jLib.player.getAccounts()) do
-        if v.name == account.name then
-            jLib.player.setAccount(k, v)
-            break
-        end
-    end
+
+    jLib.player.setAccount(account);
+
 end)
 
 jLib.Events.onNet(jLib.Utils.getConfig().events.addInventoryItem, function(item, count)

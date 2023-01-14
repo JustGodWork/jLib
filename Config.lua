@@ -24,6 +24,12 @@ Config.MarkerRGB = {
 
 Config.job2 = true -- ENABLE JOB2 USAGE
 
+Config.accounts = {
+    bank = "bank",
+    money = "money",
+    black_money = "black_money"
+}
+
 Config.events = {
     esx = "esx:getSharedObject",
     PlayerLoaded = "esx:playerLoaded",
